@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-6">
+      <div class="">
+        Lugar das imagens
+        <div *ngIf="challenge.images !=null && challenge.images.length > 0">
+          <img [src]="challenge.images[0]" alt="Imagem" [srcset]="challenge.images[0]">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6">
+      <h2> {{ challenge.title }} </h2>
+      <!-- <span class="tag"> {{ challenge.tag }} </span> -->
+      <span class="time"> {{ challenge.acceptanceTime }} </span>
+      <span class="level"> {{ challenge.difficultyLevel }} </span>
+      <span class="level"> {{ challenge.reward }} </span>
+      <span class="level"> {{ challenge.points }} </span>
+      <p class="description"> {{ challenge.description }} </p>
+    </div>
+  </div>
+
+  <div class="row tile-participant">
+    <div class="col-12">
+      <h2> Participe </h2>
+    </div>
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" (click)="goToSubmitSolution()"> Participe </button>
+    </div>
+  </div>
+
+  <div class="row tile-criteria">
+    <div class="col-12">
+      <h2> Critérios de aceitação </h2>
+    </div>
+  </div>
+  <div class="row mx-4 criteria-container">
+    <div *ngFor="let criteria of challenge.acceptanceCriteria; let i=index">
+      <div class="">
+        {{ i+1 }} <span style="font-weight: bold;"> {{ criteria.name }} </span>
+        <span> {{ criteria.description }} </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row tile-submissions">
+    <div class="col-12">
+      <h2> Submissões </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let sub of challenge.submissions" class="col-4">
+      <div class="card-submission" (click)="goToViewSolution(sub.id)">
+        <span> Imagens </span>
+        <h3> {{ sub.title }} </h3>
+        <!-- <span> {{ sub.description }} </span> -->
+        <!-- <span> {{ sub.description }} </span> -->
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+  <h3> Crie um desafio </h3>
+
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome do desafio</label>
+      <input type="text" id="name" class="form-control" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <input type="text" id="description" class="form-control" formControlName="description" />
+    </div>
+
+    <div class="form-group">
+      <label for="difficultyLevel">Nivel de Dificuldade</label>
+      <input type="text" list="difficultyLevel" (change)="onSelectedDifficultyLevel($event.target.value)">
+      <datalist id="difficultyLevel">
+        <option *ngFor="let level of difficultyLevels" value="{{level}}">
+          {{level}}
+        </option>
+      </datalist>
+    </div>
+
+    <div class="form-group">
+      <label for="reward">Recompensa</label>
+      <input type="text" id="reward" class="form-control" formControlName="reward" />
+    </div>
+
+    <div class="form-group">
+      <label for="points"> Pontos </label>
+      <input type="text" id="points" class="form-control" formControlName="points" />
+    </div>
+
+
+    <div>
+      <h3>Critérios de aceitação</h3>
+      <div class="form-group">
+        <div formArrayName="acceptanceCriteria">
+          <div *ngFor="let alternative of acceptanceCriteriaForm.controls; let i=index" [formGroupName]="i">
+
+            <div class="">
+              <label for="{{i}}-name"> Nome do critério </label>
+              <input id="{{i}}-name" class="form-control" formControlName="name" />
+            </div>
+            <div class="">
+              <label for="{{i}}-description"> Descrição </label>
+              <input id="{{i}}-description" class="form-control" formControlName="description">
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addAcceptanceCriteria()">
+          Adicionar mais um critério
+        </button>
+      </div>
+      <hr>
+      <br>
+    </div>
+
+    <div class="form-group">
+      <label for="links"> Links de apoio </label>
+      <input type="text" id="links" class="form-control" />
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary"> Visualizar prévia </button>
+    </div>
+  </form>
+
+</div>

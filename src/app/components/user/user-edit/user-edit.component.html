@@ -1,0 +1,61 @@
+<div class="container">
+  <form [formGroup]="editForm">
+    <div class="row">
+      <div class="col-6">
+        <h2> {{ name.value }} </h2>
+        <!-- <span> {{ user?.nickname }} </span> -->
+
+        <div class="form-group">
+          <label class="" for="name"> Nome </label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+
+        <!-- 
+        <div class="form-group">
+          <label class="" for="name"> nickname </label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div> -->
+
+        <div class="form-group">
+          <div class="" *ngFor="let role of roles">
+            <label for="{{ role.role }}" class="control-label col-md-4">
+              <input type="radio" [id]="role.role" [value]="role.role" formControlName="role">
+              {{ role.label }}
+            </label>
+          </div>
+        </div>
+        <br> <br>
+        <div> Sobre </div>
+        <textarea name="about" id="about" rows="10" placeholder="Lorem ipsum dolor sit amet"
+          formControlName="about"></textarea>
+
+      </div>
+      <div class="col-6"> Imagem de perfil </div>
+    </div>
+
+    <br><br>
+    {{ this.editForm.value | json }}
+    <br><br>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="tab"> Hackton </div>
+        <!-- hackton list  -->
+        <div> </div>
+
+
+        <div class="tab"> Submissões </div>
+        <!-- Submissões list  -->
+        <div></div>
+      </div>
+    </div>
+
+
+    <div class="ml-auto m-0 mt-4">
+      <button type="button" (click)="onSubmit()">
+        Criar Usuário
+      </button>
+    </div>
+
+  </form>
+</div>
