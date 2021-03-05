@@ -4,22 +4,29 @@
       <h2> {{ user?.name }} </h2>
       <!-- <span> {{ user?.nickname }} </span> -->
       <div> Sobre </div>
+      <div>lacinia sem eget, rhoncus mi. Donec sed commodo felis. Morbi elementum blandit lobortis.
+        Donec ut maximus libero. Proin semper finibus dictum. Donec fermentum est sed nisi blandit,
+        id commodo sem efficitur. Quisque venenatis iaculis nisi et efficitur. Nam est sapien, pretium vitae er</div>
       <!-- <p> {{ user.about }} </p> -->
 
     </div>
-    <div class="col-6"> Imagem de perfil </div>
+
+    <div class="col-6 image-cropper">
+      <img src="{{ user.image }}" alt="Profile image" class="profile-pic">
+    </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <div class="tab"> Hackton </div>
-      <!-- hackton list  -->
-      <div> </div>
+      <div class="tab-active"> Submissões </div>
+    </div>
+  </div>
 
-
-      <div class="tab"> Submissões </div>
-      <!-- Submissões list  -->
-      <div></div>
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let sub of solutions" class="card-submission">
+        {{sub.title}}
+      </div>
     </div>
   </div>
 

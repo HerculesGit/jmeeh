@@ -11,12 +11,13 @@
   <hr>
 
   <div class="row">
-    <div *ngFor="let challenge of challenges" class="col-md-4">
+    <div *ngFor="let challenge of challenges" class="col-md-4 card-challenge">
       <div (click)="viewChallenge(challenge)">
-        <span> {{ challenge.name }} </span>
+        <span> <img class="cover-challenge-image" src="{{ challenge.images[0] }}" alt="main image"> </span>
+        <span> {{ challenge.tags }} </span>
         <span> {{ challenge.difficultyLevel }} </span>
+        <span> {{ challenge.title }} </span>
         <span> {{ challenge.description }} </span>
-        <span> {{ challenge.tag }} </span>
       </div>
     </div>
   </div>

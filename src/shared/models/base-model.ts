@@ -1,6 +1,11 @@
+
+/**
+ * Por enquanto, deixar opcional os 'Ats'
+ * 
+ */
 export interface BaseModel {
   id: any;
-  createAt: Date
-  updateAt: Date
-  isDeleted: boolean
+  createdAt?: Date
+  updateAt?: Date
+  isDeleted?: boolean
 }

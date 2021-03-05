@@ -1,7 +1,7 @@
+import { BaseModel } from './base-model';
 import { User } from './user';
 
-export interface Solution {
-  id: any;
+export interface Solution  extends BaseModel {
   title: string;
   description: string;
   links: string[];

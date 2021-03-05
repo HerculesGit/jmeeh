@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Challenge } from 'src/shared/models/challenge';
+import { ChallengesRespository } from '../../challenge/challenge-repository';
 import { ParticipantService } from '../participant.service';
 
 @Component({
@@ -10,10 +12,14 @@ import { ParticipantService } from '../participant.service';
 })
 export class SubmitSolutionComponent implements OnInit {
 
+  IMAGE_FIELDS: string[] = ['', '', ''];
+
   submitForm: FormGroup;
   team: FormArray;
   links: FormArray;
   hacktonId: any;
+  images: string[];
+  challenge: Challenge;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,12 +62,13 @@ export class SubmitSolutionComponent implements OnInit {
     this.linksForm.push(link);
   }
 
-  private getHacktonId() {
+  private async getHacktonId() {
     this.hacktonId = this.activatedRoute.snapshot.params.id;
+    this.challenge = await ChallengesRespository.getHacktonById(this.hacktonId);
   }
 
   onSubmit() {
-    this.participantService.submitSolution({ name: 'Hercules', role: 2 }, this.hacktonId);
+    this.participantService.submitSolution({ id: Date.now, name: 'Hercules', role: 2 }, this.hacktonId);
     this.router.navigate(['/hackton']);
   }
 

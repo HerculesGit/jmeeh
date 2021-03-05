@@ -13,7 +13,7 @@
     <div class="col-6">
       <h2> {{ challenge.title }} </h2>
       <!-- <span class="tag"> {{ challenge.tag }} </span> -->
-      <span class="time"> {{ challenge.acceptanceTime }} </span>
+      <span class="time"> {{ challenge?.startDate }} </span>
       <span class="level"> {{ challenge.difficultyLevel }} </span>
       <span class="level"> {{ challenge.reward }} </span>
       <span class="level"> {{ challenge.points }} </span>
@@ -51,12 +51,12 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let sub of challenge.submissions" class="col-4">
-      <div class="card-submission" (click)="goToViewSolution(sub.id)">
-        <span> Imagens </span>
-        <h3> {{ sub.title }} </h3>
-        <!-- <span> {{ sub.description }} </span> -->
-        <!-- <span> {{ sub.description }} </span> -->
+    <div *ngFor="let submission of challenge.submissions" class="col-4">
+      <div class="card-submission" (click)="goToViewSolution(submission.id)">
+        <span> Imagem </span>
+        <h3> {{ submission.title }} </h3>
+        <span> [CLOCK-ICON] Submetido em {{submission.createdAt}}</span>
+        <span> {{ truncate(submission.description) }} </span>
       </div>
     </div>
   </div>

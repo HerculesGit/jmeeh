@@ -68,6 +68,7 @@ export class ChallengeEditComponent implements OnInit {
     let challenge: Challenge = {
       id: Date.now(),
       owner: {
+        id: Date.now,
         name: 'Hermanoteu',
         role: 1 // oner
       },
@@ -84,7 +85,7 @@ export class ChallengeEditComponent implements OnInit {
       participants: [],
       links: [],
       submissions: [],
-      acceptanceTime: new Date()
+      startDate: new Date()
     };
 
     console.log(challenge)

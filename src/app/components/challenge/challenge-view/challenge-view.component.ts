@@ -45,4 +45,19 @@ export class ChallengeViewComponent implements OnInit {
       queryParamsHandling: "preserve",
     })
   }
+
+  /**
+   * Temp method to limit caracters
+   * @param value 
+   */
+  truncate(value: string) {
+    const MAX_VALUE_TO_TRUNCATE: number = 50;
+    const lenght: number = (value.length < MAX_VALUE_TO_TRUNCATE) ? value.length : MAX_VALUE_TO_TRUNCATE;
+    let newValue: string = '';
+    for (let i = 0; i < lenght; i++) {
+      newValue += value[i];
+    }
+    newValue += '...';
+    return newValue;
+  }
 }

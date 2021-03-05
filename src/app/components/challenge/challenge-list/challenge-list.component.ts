@@ -19,7 +19,17 @@ export class ChallengeListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.challenges = this.challengeService.challeges;
+    // this.challenges = this.challengeService.challeges;
+    this.getAllChallenges();
+  }
+
+  async getAllChallenges() {
+    try {
+      this.challenges = await this.challengeService.getAllHackathon();
+      console.log(this.challenges);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   viewChallenge(challenge: Challenge) {

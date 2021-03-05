@@ -7,9 +7,13 @@ import { User } from '../models/user';
 export class Database {
   challenges: Challenge[] = [];
   solutions: Solution[] = []
-
+  users: User[];
 
   constructor() {
+
+    // this.users = [
+
+    // ];
 
     this.solutions = [
       {
@@ -28,15 +32,19 @@ export class Database {
         pointsWins: 12,
         rewardWins: '120 reais',
         user: {
+          id: 1,
           name: "Hércules",
           role: 2
         },
         team: [
           {
+            id: 2,
             name: "Gustavo",
-            role: 2
+            role: 2,
+
           },
           {
+            id: 3,
             name: "Gilberto",
             role: 2
           }
@@ -61,6 +69,7 @@ export class Database {
           'uplabs',
           'slides',
         ],
+        tags: ["UI/UX"],
         acceptanceCriteria: [
           {
             name: 'Integer lectus ex',
@@ -74,17 +83,20 @@ export class Database {
           },
         ],
         owner: {
+          id: 4,
           name: "Thaise",
           role: 1,
         },
         participants: [
           {
+            id: 1,
             name: "Hércules",
             role: 2
           }
         ],
         points: 12,
-        acceptanceTime: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         reward: 'Recompensa',
         submissions: this.solutions
       }
@@ -116,6 +128,10 @@ export class Database {
     this.updateChallengs();
   }
 
+  async getChallengeById(hacktonId: number): Promise<Challenge> {
+    const index = this.findIndex(hacktonId);
+    return this.challenges[index];
+  }
 
   private updateChallengs() {
     localStorage.setItem('challenges', JSON.stringify(this.challenges));
@@ -127,7 +143,12 @@ export class Database {
     return this.challenges[index].submissions;
   }
 
-  getOneSolutions(hacktonId: any, solutionId: any): Solution {
+  async getAllSolutionByUserId(userId: number): Promise<Solution[]> {
+    return await this.solutions;
+  }
+
+
+  getOneSolution(hacktonId: any, solutionId: any): Solution {
     const index = this.findIndex(hacktonId);
     const solutionIndex = this.challenges[index].submissions.findIndex(s => s.id == solutionId);
     return this.challenges[index].submissions[solutionIndex];

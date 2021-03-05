@@ -3,3 +3,22 @@
   font-family: Raleway /* Replace with your custom font */, sans-serif !important; 
   /* Add !important to overwrite all elements */
 }
+
+.tab-active {
+  border-bottom: 3px solid #FFA011;
+  padding-bottom: 2px;
+}
+
+.tab {
+  border: none;
+}
+
+.card-submission {
+  background-color: rgb(184, 184, 184);
+  border-radius: 0.5rem;
+  padding: 20px;
+}
+
+.card-submission { 
+  cursor: pointer;
+}

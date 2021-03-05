@@ -1,7 +1,19 @@
 <div class="container">
-  <h2> Submeter Solução </h2>
+  <h3> Submeter Solução </h3>
+
+  <div *ngIf="challenge"> Submeter para
+    <span class="challenge-title"> {{challenge.title}} </span>
+  </div>
 
   <form [formGroup]="submitForm">
+
+    <div class="form-group">
+      <div class="row">
+        <div *ngFor="let field of IMAGE_FIELDS">
+          <div class="card-empty-image col"> </div>
+        </div>
+      </div>
+    </div>
 
     <div class="form-group">
       <label for="title"> Título </label>
@@ -15,7 +27,7 @@
       </textarea>
     </div>
 
-    Membros
+    <!-- Membros
     <div formArrayName="team">
       <div *ngFor="let alias of teamForm.controls; let i=index">
         <input type="text" placeholder="nickname" [formControlName]="i">
@@ -25,7 +37,7 @@
     <button type="button" class="btn btn-primary" (click)="addMember()">
       Convidar um membro </button>
 
-    <hr>
+    <hr> -->
 
     Links
     <div formArrayName="links">
@@ -37,13 +49,10 @@
     <button type="button" class="btn btn-secundary" (click)="addLink()">
       Adicionar mais um link </button>
 
-
-
-    <br>
-    <br>
-    <br>
     <div class="row">
-      <button type="button" class="btn btn-primary" (click)="onSubmit()"> Submeter solução </button>
+      <div class="primary-button">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"> Submeter solução </button>
+      </div>
     </div>
   </form>
 

@@ -11,7 +11,7 @@ export class SolutionService {
   constructor() { }
 
   getOneSolution(hacktonId: any, solutionId: any): Solution {
-    return this.database.getOneSolutions(hacktonId, solutionId);
+    return this.database.getOneSolution(hacktonId, solutionId);
   }
   // getSolutions(hacktonId: any): Solution {
   //   this.database.getSubmissions(hacktonId);

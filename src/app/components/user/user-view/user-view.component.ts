@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Solution } from 'src/shared/models/solution';
 import { User } from 'src/shared/models/user';
+import { SolutionRepository } from '../../solution/solution-repository';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { UserService } from '../user.service';
 export class UserViewComponent implements OnInit {
 
   user: User;
+  solutions: Solution[];
 
   constructor(
     private router: Router,
@@ -23,8 +26,18 @@ export class UserViewComponent implements OnInit {
     // this.user = this.userService.getUser(userId);
 
     this.user = {
+      id: Date.now,
       name: 'James Jacob',
-      role: 1
+      role: 1,
+      image: 'https://goodmenproject.com/wp-content/uploads/2019/09/shutterstock_1150576721.jpg',
     };
+
+    this.getAllSolutionByUser();
   }
+  
+  async getAllSolutionByUser () {
+    this.solutions = await SolutionRepository.getAllSolutionByUserId(null);
+  }
+
+
 }

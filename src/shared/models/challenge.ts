@@ -12,9 +12,11 @@ export interface Challenge {
   points: number;
   acceptanceCriteria: AcceptanceCriteria[];
   links: string[];
-  acceptanceTime: Date;
+  startDate: Date;
+  endDate?: Date,
   images?: string[]
-  owner: Owner
+  tags?: string[]
+  owner?: Owner
   time?: Date,
   participants: Participant[], // acho que isso pode sair! porque nas submissoes diz quem participa
   submissions: Solution[]

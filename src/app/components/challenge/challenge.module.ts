@@ -5,6 +5,8 @@ import { ChallengeListComponent } from './challenge-list/challenge-list.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ChallengeViewComponent } from './challenge-view/challenge-view.component';
+import { HttpClientModule } from "@angular/common/http";
+import { ChallengeService } from './challenge.service';
 
 const routes: Routes = [
   {
@@ -41,7 +43,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule,
+  ],
+  providers: [
+    ChallengeService
   ]
 })
 export class ChallengeModule { }
