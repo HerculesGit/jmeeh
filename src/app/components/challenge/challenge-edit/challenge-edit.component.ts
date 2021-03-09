@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from 'src/shared/core/base-components/base-component.component';
 import { AcceptanceCriteria } from 'src/shared/models/acceptance-criteria';
 import { Challenge } from 'src/shared/models/challenge';
 import { ChallengeService } from '../challenge.service';
@@ -12,7 +13,7 @@ import { ChallengeService } from '../challenge.service';
   templateUrl: './challenge-edit.component.html',
   styleUrls: ['./challenge-edit.component.scss']
 })
-export class ChallengeEditComponent implements OnInit {
+export class ChallengeEditComponent extends BaseComponent implements OnInit {
 
   editForm: FormGroup;
   selectedDifficultyLevel: string = 'Iniciante';
@@ -23,12 +24,10 @@ export class ChallengeEditComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private challengeService: ChallengeService,
-
-  ) { }
+    private challengeService: ChallengeService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -67,11 +66,7 @@ export class ChallengeEditComponent implements OnInit {
     const value = this.editForm.value;
     let challenge: Challenge = {
       id: Date.now(),
-      owner: {
-        id: Date.now,
-        name: 'Hermanoteu',
-        role: 1 // oner
-      },
+      owner: this.currentUser,
       title: value.name,
       images: [
         'https://mir-s3-cdn-cf.behance.net/project_modules/1400/b7dfae65355547.5af1a1b1482ab.png',
@@ -103,12 +98,10 @@ export class ChallengeEditComponent implements OnInit {
 
 
   onSubmit() {
-    // this.router.navigate(['preview'], {
-    //   relativeTo: this.activatedRoute
-    // })
-    this.challengeService.addHackaton(this.toChallenge())
-
-
+    this.router.navigate(['/'], {
+      relativeTo: this.activatedRoute
+    })
+    this.challengeService.addHackaton(this.toChallenge());
   }
 
 

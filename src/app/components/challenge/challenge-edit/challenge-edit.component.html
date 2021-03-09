@@ -9,7 +9,9 @@
 
     <div class="form-group">
       <label for="description">Descrição</label>
-      <input type="text" id="description" class="form-control" formControlName="description" />
+      <textarea type="text" id="description" class="form-control" formControlName="description">
+
+      </textarea>
     </div>
 
     <div class="form-group">
@@ -45,7 +47,7 @@
             </div>
             <div class="">
               <label for="{{i}}-description"> Descrição </label>
-              <input id="{{i}}-description" class="form-control" formControlName="description">
+              <textarea id="{{i}}-description" class="form-control" formControlName="description"></textarea>
             </div>
           </div>
         </div>
@@ -63,7 +65,10 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-primary"> Visualizar prévia </button>
+      <button type="button" class="btn btn-secondary"> Visualizar prévia </button>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary"> Criar </button>
     </div>
   </form>
 

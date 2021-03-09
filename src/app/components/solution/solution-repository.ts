@@ -11,7 +11,16 @@ export class SolutionRepository {
 
   }
 
+  static async getOneSolution(hacktonId: any, solutionId: any): Promise<Solution> {
+    return await new Database().getOneSolution(hacktonId, solutionId);
+  }
+
   static async getAllSolutionByUserId(userId: number): Promise<Solution[]> {
     return new Database().getAllSolutionByUserId(userId);
   }
+
+  static async submitSolution(solution: Solution, hacktonId: any): Promise<Solution> {
+    return new Database().submitSolution(solution, hacktonId);
+  }
+
 }

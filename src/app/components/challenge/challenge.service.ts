@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppConstants } from 'src/app/app-constants';
-import { Database } from 'src/shared/database/database';
 import { Challenge } from 'src/shared/models/challenge';
-import { User } from 'src/shared/models/user';
+import { Solution } from 'src/shared/models/solution';
+import { UserRepository } from 'src/shared/repositories/user-repository';
+import { SolutionRepository } from '../solution/solution-repository';
 import { ChallengesRespository } from './challenge-repository';
 
 @Injectable({
@@ -12,30 +12,29 @@ import { ChallengesRespository } from './challenge-repository';
 export class ChallengeService {
 
   challeges: Challenge[] = [];
-  database: Database = new Database();
 
-  constructor(private http: HttpClient) {
-    this.challeges = this.database.getAllChallenges();
+  constructor(private http: HttpClient,
+    private userRepository: UserRepository) {
   }
 
   async getAllHackathon(): Promise<Challenge[]> {
-    // const challenges: any = await this.http.get(AppConstants.CHALLENGES).toPromise();
     const challenges = await ChallengesRespository.getAllHackathon();
     return challenges;
   }
 
-  addHackaton(challenge: Challenge) {
-    this.database.addChallenge(challenge);
+  async addHackaton(challenge: Challenge) {
+    challenge = await ChallengesRespository.createChallenge(challenge);
   }
 
-  submitSolution(user: User, hacktonId: any) {
-    this.database.submitSolution(user, hacktonId);
+  async submitSolution(solution: Solution, hacktonId: any): Promise<Solution> {
+    return await SolutionRepository.submitSolution(solution, hacktonId);
   }
 
-  getHackton(hacktonId: any): Challenge {
-    const index = this.challeges.findIndex(c => c.id == hacktonId);
-    console.log(hacktonId, index)
-    return this.challeges[index];
+  async getHackton(hacktonId: any): Promise<Challenge> {
+    return await ChallengesRespository.getHacktonById(hacktonId);
   }
 
+  getCurrentUser() {
+    return this.userRepository.getCurrentUser();
+  }
 }

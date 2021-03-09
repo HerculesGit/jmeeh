@@ -4,7 +4,7 @@
     <h2> Desafios </h2>
 
     <!-- if user logged is owner -->
-    <button type="button" class="btn btn-primary" (click)="createHackaton()"> Criar Hackton </button>
+    <button *ngIf="currentUser && isCreator()" type="button" class="btn btn-primary" (click)="createHackaton()"> Criar Hackton </button>
     <button type="button" class="btn btn-primary" (click)="goToViewUser()"> Ver Users </button>
     <button type="button" class="btn btn-primary" (click)="createUser()"> Criar usuario </button>
   </div>

@@ -13,7 +13,6 @@
         <span class="tag"> {{solution?.rewardWins }} </span>
       </div>
       {{ solution?.description }}
-      {{ solution?.team }}
       {{ solution?.links }}
     </div>
   </div>
@@ -28,19 +27,4 @@
       </div>
     </ng-container>
   </div>
-
-  <div class="row tile-team">
-    <div class="col-12">
-      <h2> Team </h2>
-    </div>
-  </div>
-
-  <div *ngIf="solution && solution.team" class="row">
-    <div class="col-6">
-      <div *ngFor="let member of solution.team">
-        <span (click)="goToTeamMember(member)" class="user-team-image"> user image </span>
-      </div>
-    </div>
-  </div>
-
 </div>

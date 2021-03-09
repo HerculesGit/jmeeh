@@ -19,6 +19,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
 })
 export class SolutionModule { }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from 'src/shared/core/base-components/base-component.component';
 import { Database } from 'src/shared/database/database';
 import { Challenge } from 'src/shared/models/challenge';
+import { User } from 'src/shared/models/user';
+import { UserService } from '../../user/user.service';
 import { ChallengeService } from '../challenge.service';
 
 @Component({
@@ -9,24 +12,25 @@ import { ChallengeService } from '../challenge.service';
   templateUrl: './challenge-list.component.html',
   styleUrls: ['./challenge-list.component.scss']
 })
-export class ChallengeListComponent implements OnInit {
+export class ChallengeListComponent extends BaseComponent implements OnInit {
 
   challenges: Challenge[]
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private challengeService: ChallengeService,
-  ) { }
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    // this.challenges = this.challengeService.challeges;
     this.getAllChallenges();
+    super.ngOnInit();
   }
 
   async getAllChallenges() {
     try {
       this.challenges = await this.challengeService.getAllHackathon();
-      console.log(this.challenges);
     } catch (error) {
       console.log(error);
     }
@@ -60,4 +64,5 @@ export class ChallengeListComponent implements OnInit {
     );
   }
 
+  isCreator = () => this.currentUser.role == 1;
 }

@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChallengeViewComponent } from './challenge-view/challenge-view.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ChallengeService } from './challenge.service';
+import { CardSolutionModule } from '../solution/card-solution/card-solution.module';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     HttpClientModule,
+    CardSolutionModule
   ],
   providers: [
     ChallengeService

@@ -4,6 +4,8 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SolutionViewComponent } from '../solution/solution-view/solution-view.component';
+import { CardSolutionModule } from '../solution/card-solution/card-solution.module';
 
 const routes: Routes = [
   {
@@ -13,6 +15,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: UserEditComponent
+  },
+  {
+    path: 'solution/:userId/solution/:idsolution',
+    component: SolutionViewComponent
   }
 ];
 
@@ -23,6 +29,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CardSolutionModule,
     RouterModule.forChild(routes)
   ]
 })

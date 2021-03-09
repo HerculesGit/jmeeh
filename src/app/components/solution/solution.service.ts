@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Database } from 'src/shared/database/database';
 import { Solution } from 'src/shared/models/solution';
+import { SolutionRepository } from './solution-repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolutionService {
 
-  database: Database = new Database();
   constructor() { }
 
-  getOneSolution(hacktonId: any, solutionId: any): Solution {
-    return this.database.getOneSolution(hacktonId, solutionId);
+  async getOneSolution(hacktonId: any, solutionId: any): Promise<Solution> {
+    return SolutionRepository.getOneSolution(hacktonId, solutionId);
   }
-  // getSolutions(hacktonId: any): Solution {
-  //   this.database.getSubmissions(hacktonId);
-  // }
+
+  async submitSolution(solution: Solution, hacktonId: any): Promise<Solution> {
+    return SolutionRepository.submitSolution(solution, hacktonId);
+  }
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from 'src/shared/core/base-components/base-component.component';
 import { Challenge } from 'src/shared/models/challenge';
+import { Solution } from 'src/shared/models/solution';
 import { ChallengesRespository } from '../../challenge/challenge-repository';
 import { ParticipantService } from '../participant.service';
 
@@ -10,29 +12,30 @@ import { ParticipantService } from '../participant.service';
   templateUrl: './submit-solution.component.html',
   styleUrls: ['./submit-solution.component.scss']
 })
-export class SubmitSolutionComponent implements OnInit {
+export class SubmitSolutionComponent extends BaseComponent implements OnInit {
 
   IMAGE_FIELDS: string[] = ['', '', ''];
 
   submitForm: FormGroup;
   team: FormArray;
-  links: FormArray;
   hacktonId: any;
   images: string[];
   challenge: Challenge;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     private participantService: ParticipantService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.initForm();
     this.addMember();
     this.addLink();
     this.getHacktonId();
+
+    super.ngOnInit();
   }
 
 
@@ -67,9 +70,32 @@ export class SubmitSolutionComponent implements OnInit {
     this.challenge = await ChallengesRespository.getHacktonById(this.hacktonId);
   }
 
+  private toSolution(): Solution {
+    const value = this.submitForm.value;
+
+    const links = (!this.linksForm.value
+      || this.linksForm.value == null)
+      ? [] : this.linksForm.value;
+
+    const solution: Solution = {
+      id: null,
+      challengeId: this.hacktonId,
+      description: value.description,
+      links: links,
+      pointsWins: null,
+      rewardWins: null,
+      title: value.title,
+      user: this.currentUser,
+    };
+
+    return solution;
+  }
+
   onSubmit() {
-    this.participantService.submitSolution({ id: Date.now, name: 'Hercules', role: 2 }, this.hacktonId);
-    this.router.navigate(['/hackton']);
+    this.participantService.submitSolution(this.toSolution(), this.hacktonId).then((solution) => {
+      console.log(solution);
+      this.router.navigate(['/hackton']);
+    }).catch((ex) => console.error(ex));
   }
 
 }

@@ -21,16 +21,19 @@ export class SolutionViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const solutionId = this.activatedRoute.snapshot.params.solutionId;
-    const hackatonId = this.activatedRoute.snapshot.params.id;
     // console.log(this.activatedRoute.snapshot.params)
-    this.solution = this.solutionService.getOneSolution(hackatonId, solutionId);
+    this.getOneSolution();
   }
-
 
   goToTeamMember(member: User) {
     console.log(`go to team member ${member.name}`);
     this.router.navigate([`users/view/${member.role}`])
+  }
+
+  async getOneSolution() {
+    const solutionId = this.activatedRoute.snapshot.params.solutionId;
+    const hackatonId = this.activatedRoute.snapshot.params.id;
+    this.solution = await this.solutionService.getOneSolution(hackatonId, solutionId);
   }
 
 }

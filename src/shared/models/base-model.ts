@@ -4,7 +4,7 @@
  * 
  */
 export interface BaseModel {
-  id: any;
+  id: number;
   createdAt?: Date
   updateAt?: Date
   isDeleted?: boolean

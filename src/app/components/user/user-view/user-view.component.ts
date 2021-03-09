@@ -26,7 +26,7 @@ export class UserViewComponent implements OnInit {
     // this.user = this.userService.getUser(userId);
 
     this.user = {
-      id: Date.now,
+      id: userId,
       name: 'James Jacob',
       role: 1,
       image: 'https://goodmenproject.com/wp-content/uploads/2019/09/shutterstock_1150576721.jpg',
@@ -34,10 +34,8 @@ export class UserViewComponent implements OnInit {
 
     this.getAllSolutionByUser();
   }
-  
-  async getAllSolutionByUser () {
+
+  async getAllSolutionByUser() {
     this.solutions = await SolutionRepository.getAllSolutionByUserId(null);
   }
-
-
 }

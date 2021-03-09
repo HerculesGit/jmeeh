@@ -10,11 +10,15 @@ export class ChallengesRespository {
 
   }
 
+  static async createChallenge(challenge: Challenge): Promise<Challenge> {
+    return new Database().addChallenge(challenge);
+  }
+
   static async getAllHackathon(): Promise<Challenge[]> {
     return new Database().getAllChallenges();
   }
 
   static async getHacktonById(hackathonId: number): Promise<Challenge> {
-    return new Database().getChallengeById(hackathonId);
+    return await new Database().getChallengeById(hackathonId);
   }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="challenge">
 
   <div class="row">
     <div class="col-6">
@@ -51,15 +51,8 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let submission of challenge.submissions" class="col-4">
-      <div class="card-submission" (click)="goToViewSolution(submission.id)">
-        <span> Imagem </span>
-        <h3> {{ submission.title }} </h3>
-        <span> [CLOCK-ICON] Submetido em {{submission.createdAt}}</span>
-        <span> {{ truncate(submission.description) }} </span>
-      </div>
+    <div *ngFor="let submission of challenge.submissions" class="p-2 m-2">
+      <app-card-solution [solution]="submission"></app-card-solution>
     </div>
   </div>
-
-
 </div>
