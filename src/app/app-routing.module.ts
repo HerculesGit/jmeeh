@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () => import('./components/user/user.module').then(m => m.UserModule),
+    loadChildren: () => import('./components/users/user.module').then(m => m.UserModule),
   },
   // {
   //   path: 'classrooms',

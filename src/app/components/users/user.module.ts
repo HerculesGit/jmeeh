@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SolutionViewComponent } from '../solution/solution-view/solution-view.component';
 import { CardSolutionModule } from '../solution/card-solution/card-solution.module';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 const routes: Routes = [
   {
@@ -24,12 +25,17 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [UserViewComponent, UserEditComponent],
+  declarations: [ 
+    UserViewComponent, 
+    UserEditComponent, 
+    // TODO: Conversar com o professor como usar
+    RegisterUserComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     CardSolutionModule,
+
     RouterModule.forChild(routes)
   ]
 })

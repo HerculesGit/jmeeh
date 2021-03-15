@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from 'src/shared/core/base-components/base-component.component';
 import { Database } from 'src/shared/database/database';
+import { Role } from 'src/shared/enums/role';
 import { Challenge } from 'src/shared/models/challenge';
 import { User } from 'src/shared/models/user';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../../users/user.service';
 import { ChallengeService } from '../challenge.service';
 
 @Component({
@@ -64,5 +65,5 @@ export class ChallengeListComponent extends BaseComponent implements OnInit {
     );
   }
 
-  isCreator = () => this.currentUser.role == 1;
+  isCreator = () => this.currentUser.role == Role.creator;
 }

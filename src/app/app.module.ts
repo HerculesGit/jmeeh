@@ -7,7 +7,6 @@ import { CoreModule } from 'src/shared/core/core-module.module';
 import { setAppInjector } from 'src/shared/core/app-injector';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 @NgModule({
   declarations: [
     AppComponent,

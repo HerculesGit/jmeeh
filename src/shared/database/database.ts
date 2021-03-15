@@ -1,6 +1,7 @@
 // mock
 
 import { Constants } from "../constants/constants";
+import { Role } from "../enums/role";
 import { Challenge } from "../models/challenge";
 import { Solution } from '../models/solution';
 import { User } from '../models/user';
@@ -106,7 +107,7 @@ export class Database {
     user.createdAt = new Date();
     user.updateAt = new Date();
 
-    const key = (user.role == 1) ? Constants.USER_CREATOR : Constants.USER;
+    const key = (user.role == Role.creator) ? Constants.USER_CREATOR : Constants.USER;
     console.log(user)
     this.saveInLocalStorage(key, user);
     return user;
